@@ -33,8 +33,15 @@ createApp({
 
     },
     taskSubmit(){
-        const newTask=new ToDoItem(this.newTask.text,false);
-        this.toDoList.push(newTask)
+        if(this.newTask.text!==""){
+            const newTask=new ToDoItem(this.newTask.text,false);
+        this.toDoList.push(newTask);
+        this.newTask.text="";
+
+        }else{
+            alert("come fai a ricordare una task se non scrivi niente!!")
+        }
+        
     }
 
   },
