@@ -30,20 +30,20 @@
                     </div>
 
                     <!-- aggiungi nuova task  -->
-                    <form action="" class="d-flex mb-3">
-                        <input class="form-control" type="text" class="flex-grow-1" placeholder="new task">
+                    <form action="" class="d-flex mb-3" @submit.prevent="taskSubmit()">
+                        <input v-model="newTask.text" class="form-control" type="text" class="flex-grow-1" placeholder="new task">
                         <button class="btn btn-primary flex-shrink-0" >Add task</button>
                     </form>
 
                     <!-- lista delle task -->
                     <div class="d-flex flex-column gap-1">
-                        <div class="task" v-for="(task) in toDoList">
-                            <div class="flex-grow-1">
+                        <div class="task" v-for="(task,i) in toDoList">
+                            <div class="flex-grow-1" @click="onTaskClick(i)">
                                 <i class="fa-regular " :class="{'fa-circle' : !task.done,'fa-circle-check':task.done }"></i>
                             
-                                <span class="ms-2">{{task.text}}</span>
+                                <span class="ms-2" :class="{'text-decoration-line-through': task.done}">{{task.text}}</span>
                             </div>
-                            <div class="px-3 btn-delete">
+                            <div class="px-3 btn-delete" @click="onDeleteTask(i)">
                                 <i class="fa-solid fa-trash"></i>
                             </div>
 
